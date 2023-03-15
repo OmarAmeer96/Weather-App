@@ -15,7 +15,7 @@ class HomeScreen extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return const SearchScreen();
+                    return SearchScreen();
                   },
                 ),
               );

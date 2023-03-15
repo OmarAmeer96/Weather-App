@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:weather_app/services/weather_service.dart';
 
 class SearchScreen extends StatelessWidget {
   String? cityName;
@@ -17,6 +16,8 @@ class SearchScreen extends StatelessWidget {
           child: TextField(
             onSubmitted: (data) {
               cityName = data;
+              WeatherService service = WeatherService();
+              service.getWeather(cityName: cityName!);
             },
             decoration: const InputDecoration(
               contentPadding: EdgeInsets.symmetric(
