@@ -19,7 +19,7 @@ class WeatherApp extends StatelessWidget {
       },
       child: MaterialApp(
         theme: ThemeData(
-          primarySwatch: Colors.amber,
+          primarySwatch: Colors.yellow,
         ),
         debugShowCheckedModeBanner: false,
         home: const HomeScreen(),
