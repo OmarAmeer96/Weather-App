@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_app/models/weather_model.dart';
-import 'package:weather_app/providers/weather_provider.dart';
 import 'package:weather_app/screens/search_screen.dart';
+
+import '../providers/weather_provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -16,8 +17,11 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {});
   }
 
+  WeatherModel? weatherData;
   @override
   Widget build(BuildContext context) {
+    weatherData = Provider.of<WeatherProvider>(context).weatherData;
+
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -39,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
         title: const Text("Weather App"),
       ),
-      body: Provider.of<WeatherProvider>(context).weatherData == null
+      body: weatherData == null
           ? Center(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -67,16 +71,16 @@ class _HomeScreenState extends State<HomeScreen> {
                   const Spacer(
                     flex: 2,
                   ),
-                  const Text(
-                    'Cairo',
-                    style: TextStyle(
+                  Text(
+                    Provider.of<WeatherProvider>(context).cityName!,
+                    style: const TextStyle(
                       fontSize: 32,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const Text(
-                    'Updated: 12:05 PM',
-                    style: TextStyle(
+                  Text(
+                    'Updated: ${weatherData!.date}',
+                    style: const TextStyle(
                       fontSize: 15,
                     ),
                   ),
@@ -85,25 +89,37 @@ class _HomeScreenState extends State<HomeScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Image.asset('assets/images/clear.png'),
-                      const Text(
-                        '30',
-                        style: TextStyle(
+                      Text(
+                        '${weatherData!.temp.toInt()}',
+                        style: const TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       Column(
-                        children: const [
-                          Text('Max Temp = 30'),
-                          Text('Min Temp = 10'),
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Max Temp = ${weatherData!.maxTemp.toInt()}',
+                            style: const TextStyle(
+                              fontSize: 17,
+                            ),
+                          ),
+                          Text(
+                            'Min Temp  = ${weatherData!.minTemp.toInt()}',
+                            style: const TextStyle(
+                              fontSize: 17,
+                            ),
+                          ),
                         ],
                       ),
                     ],
                   ),
                   const Spacer(),
-                  const Text(
-                    'Clear',
-                    style: TextStyle(
+                  Text(
+                    // Because of the (Null Safety). ==> can be too: weatherData?.weatherStateName??''.
+                    weatherData!.weatherStateName,
+                    style: const TextStyle(
                       fontSize: 32,
                       fontWeight: FontWeight.bold,
                     ),

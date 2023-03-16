@@ -22,12 +22,13 @@ class WeatherModel {
       temp: jsonData['avgtemp_c'],
       maxTemp: jsonData['maxtemp_c'],
       minTemp: jsonData['mintemp_c'],
-      weatherStateName: jsonData['condition']['text'],
+      weatherStateName: data['current']['condition']['text'],
     );
   }
 
-  @override
-  String toString() {
-    return 'Date = $date, Temp = $temp, Max Temp = $maxTemp, Min Temp = $minTemp, Weather State = $weatherStateName';
+  String? getImage() {
+    if (weatherStateName == 'Sunny') {
+      return 'assets/images/clear.png';
+    }
   }
 }
