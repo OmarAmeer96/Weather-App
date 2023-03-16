@@ -17,9 +17,12 @@ class WeatherApp extends StatelessWidget {
       create: (context) {
         return WeatherProvider();
       },
-      child: const MaterialApp(
+      child: MaterialApp(
+        theme: ThemeData(
+          primarySwatch: Colors.amber,
+        ),
         debugShowCheckedModeBanner: false,
-        home: HomeScreen(),
+        home: const HomeScreen(),
       ),
     );
   }

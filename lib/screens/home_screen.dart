@@ -64,7 +64,6 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             )
           : Container(
-              color: Colors.orange,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -88,7 +87,14 @@ class _HomeScreenState extends State<HomeScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Image.asset('assets/images/clear.png'),
+                      Image.network(
+                        'https:${weatherData!.image}',
+                        errorBuilder: (BuildContext context, Object exception,
+                            StackTrace? stackTrace) {
+                          // Display a placeholder image or error message
+                          return const Icon(Icons.error);
+                        },
+                      ),
                       Text(
                         '${weatherData!.temp.toInt()}',
                         style: const TextStyle(
@@ -102,13 +108,13 @@ class _HomeScreenState extends State<HomeScreen> {
                           Text(
                             'Max Temp = ${weatherData!.maxTemp.toInt()}',
                             style: const TextStyle(
-                              fontSize: 17,
+                              fontSize: 14,
                             ),
                           ),
                           Text(
                             'Min Temp  = ${weatherData!.minTemp.toInt()}',
                             style: const TextStyle(
-                              fontSize: 17,
+                              fontSize: 14,
                             ),
                           ),
                         ],
