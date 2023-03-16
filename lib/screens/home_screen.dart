@@ -39,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
         title: const Text("Weather App"),
       ),
-      body: Provider.of<WeatherProvider>(context).weatherData == null
+      body: Provider.of<WeatherProvider>(context, listen: true).weatherData == null
           ? Center(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
