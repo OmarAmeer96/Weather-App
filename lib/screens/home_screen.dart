@@ -64,6 +64,17 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             )
           : Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    weatherData!.getThemeColor(),
+                    weatherData!.getThemeColor()[300]!,
+                    weatherData!.getThemeColor()[200]!,
+                  ],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                ),
+              ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -103,18 +114,17 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                       Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Max Temp = ${weatherData!.maxTemp.toInt()}',
+                            'Max Temp: ${weatherData!.maxTemp.toInt()}',
                             style: const TextStyle(
-                              fontSize: 14,
+                              fontSize: 15,
                             ),
                           ),
                           Text(
-                            'Min Temp  = ${weatherData!.minTemp.toInt()}',
+                            'Min Temp: ${weatherData!.minTemp.toInt()}',
                             style: const TextStyle(
-                              fontSize: 14,
+                              fontSize: 15,
                             ),
                           ),
                         ],
