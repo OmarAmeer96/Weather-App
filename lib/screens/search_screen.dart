@@ -29,15 +29,16 @@ class SearchScreen extends StatelessWidget {
                   weather;
               Navigator.pop(context);
             },
-            decoration: const InputDecoration(
-              contentPadding: EdgeInsets.symmetric(
+            decoration: InputDecoration(
+              contentPadding: const EdgeInsets.symmetric(
                 vertical: 25,
                 horizontal: 15,
               ),
               hintText: "Enter a City",
-              border: OutlineInputBorder(),
-              suffixIcon: Icon(Icons.search),
-              label: Text("Search"),
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(16)),
+              suffixIcon: const Icon(Icons.search),
+              label: const Text("Search"),
             ),
           ),
         ),

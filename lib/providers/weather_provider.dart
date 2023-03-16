@@ -9,5 +9,5 @@ class WeatherProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  WeatherModel? get weatherData => _weatherData!;
+  WeatherModel? get weatherData => _weatherData;
 }
