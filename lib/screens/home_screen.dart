@@ -2,10 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:weather_app/models/weather_model.dart';
 import 'package:weather_app/screens/search_screen.dart';
 
-class HomeScreen extends StatelessWidget {
-  HomeScreen({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
-  WeatherModel? weatherData;
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  void updateUi() {
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +25,9 @@ class HomeScreen extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return SearchScreen();
+                    return SearchScreen(
+                      updateUi: updateUi,
+                    );
                   },
                 ),
               );
@@ -28,7 +37,7 @@ class HomeScreen extends StatelessWidget {
         ],
         title: const Text("Weather App"),
       ),
-      body: weatherData != null
+      body: weatherData == null
           ? Center(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -49,6 +58,7 @@ class HomeScreen extends StatelessWidget {
               ),
             )
           : Container(
+              color: Colors.orange,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

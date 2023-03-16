@@ -5,6 +5,9 @@ import 'package:weather_app/services/weather_service.dart';
 class SearchScreen extends StatelessWidget {
   String? cityName;
 
+  SearchScreen({super.key, this.updateUi});
+  VoidCallback? updateUi;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +23,9 @@ class SearchScreen extends StatelessWidget {
               WeatherService service = WeatherService();
               WeatherModel weather =
                   await service.getWeather(cityName: cityName!);
-              print(weather);
+              weatherData = weather;
+              updateUi!();
+              Navigator.pop(context);
             },
             decoration: const InputDecoration(
               contentPadding: EdgeInsets.symmetric(
@@ -38,3 +43,5 @@ class SearchScreen extends StatelessWidget {
     );
   }
 }
+
+WeatherModel? weatherData;
