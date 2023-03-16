@@ -89,7 +89,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   Text(
-                    'Updated: ${weatherData!.date}',
+                    'Updated at: ${weatherData!.date.substring(
+                      11,
+                    )}',
                     style: const TextStyle(
                       fontSize: 15,
                     ),
