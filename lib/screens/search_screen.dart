@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:weather_app/models/weather_model.dart';
+import 'package:weather_app/providers/weather_provider.dart';
 import 'package:weather_app/services/weather_service.dart';
 
 class SearchScreen extends StatelessWidget {
@@ -23,7 +25,7 @@ class SearchScreen extends StatelessWidget {
               WeatherService service = WeatherService();
               WeatherModel weather =
                   await service.getWeather(cityName: cityName!);
-              weatherData = weather;
+              Provider.of<WeatherProvider>(context).weatherData = weather;
               updateUi!();
               Navigator.pop(context);
             },
@@ -43,5 +45,3 @@ class SearchScreen extends StatelessWidget {
     );
   }
 }
-
-WeatherModel? weatherData;

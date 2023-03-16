@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app/models/weather_model.dart';
+import 'package:weather_app/providers/weather_provider.dart';
 import 'package:weather_app/screens/home_screen.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const WeatherApp());
@@ -10,9 +13,14 @@ class WeatherApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+    return Provider(
+      create: (context) {
+        return WeatherProvider();
+      },
+      child: const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: HomeScreen(),
+      ),
     );
   }
 }
